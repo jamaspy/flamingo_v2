@@ -9,6 +9,9 @@
 @variant dark (&:is(.dark *));
 
 @theme {
+  --color-flamingo-primary: hsl(var(--flamingo-primary));
+  --color-flamingo-secondary: hsl(var(--flamingo-secondary));
+
   --color-background: hsl(var(--background));
   --color-foreground: hsl(var(--foreground));
 
@@ -75,14 +78,11 @@
   }
 }
 
-@layer utilities {
-  body {
-    font-family: "Manrope", Arial, Helvetica, sans-serif;
-  }
-}
 
 @layer base {
   :root {
+    --flamingo-primary: 241 100% 50%;
+    --flamingo-secondary: 60 11% 82%
     --background: 0 0% 100%;
     --foreground: 222.2 84% 4.9%;
     --card: 0 0% 100%;
@@ -119,6 +119,8 @@
   }
 
   .dark {
+    --flamingo-primary: 241 100% 50%;
+    --flamingo-secondary: 60 11% 82%
     --background: 222.2 84% 4.9%;
     --foreground: 210 40% 98%;
     --card: 222.2 84% 4.9%;
@@ -168,6 +170,8 @@
 */
 
 :root {
+  --flamingo-primary: hsl(241 100% 50%);
+  --flamingo-secondary: hsl(60 11% 82%);
   --background: hsl(0 0% 100%);
   --foreground: hsl(240 10% 3.9%);
   --card: hsl(0 0% 100%);
@@ -200,6 +204,8 @@
 */
 
 .dark {
+  --flamingo-primary: hsl(241 100% 50%);
+  --flamingo-secondary: hsl(60 11% 82%);
   --background: hsl(240 10% 3.9%);
   --foreground: hsl(0 0% 98%);
   --card: hsl(240 10% 3.9%);
@@ -231,6 +237,8 @@
 */
 
 @theme inline {
+  --color-flamingo-primary: var(--flamingo-primary);
+  --color-flamingo-secondary: var(--flamingo-secondary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
