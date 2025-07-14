@@ -1,5 +1,5 @@
 import { Suspense } from "react";
-import { Login } from "@/components/complex/forms/login-form";
+import { Login } from "@/components/complex";
 
 export default function SignUpPage() {
   return (

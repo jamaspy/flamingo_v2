@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { use, useState, Suspense } from "react";
+import { use, useState, Suspense, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { CircleIcon, Home, LogOut } from "lucide-react";
 import {
@@ -31,20 +31,12 @@ function UserMenu() {
 
   if (!user) {
     return (
-      <>
-        <Link
-          href="/pricing"
-          className="text-sm font-medium text-gray-700 hover:text-gray-900"
-        >
-          Pricing
-        </Link>
-        <Button
-          asChild
-          className="rounded-full font-medium bg-flamingo-primary text-white"
-        >
-          <Link href="/sign-up">Sign Up</Link>
-        </Button>
-      </>
+      <Button
+        asChild
+        className="rounded-full font-medium bg-flamingo-primary text-white"
+      >
+        <Link href="/sign-up">Sign Up</Link>
+      </Button>
     );
   }
 
@@ -85,8 +77,29 @@ function UserMenu() {
 }
 
 function Header() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const isScrolled = window.scrollY > 10;
+      if (isScrolled !== scrolled) {
+        setScrolled(isScrolled);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [scrolled]);
+
   return (
-    <header className="bg-transparent fixed top-0 left-0 right-0 z-50">
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-colors duration-200 ${
+        scrolled ? "bg-flamingo-secondary shadow-sm" : "bg-transparent"
+      }`}
+    >
       <div className="px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
         <Link href="/" className="flex items-center">
           <CircleIcon className="h-6 w-6 text-flamingo-primary" />
